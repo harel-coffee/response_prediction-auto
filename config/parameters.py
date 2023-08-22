@@ -14,7 +14,7 @@ AnnotationExtractionSave_WSIs_ = '/home/seyedm.mousavikahaki/Documents/wxc4/*.sv
 AnnotationExtractionSave_WSIs_win = 'C:/DATA/Washu-Aperio/*.svs'
 # Patch Generator
 PatchGenerator_png_extract = True
-PatchGenerator_hdf5 = True
+PatchGenerator_hdf5 = False
 PatchGenerator_open_dataset=True
 PatchGenerator_Aplha = 2
 PatchGenerator_INPUTDIR = 'extracted_segmented/'
