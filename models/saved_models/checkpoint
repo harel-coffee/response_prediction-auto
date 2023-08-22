@@ -1,0 +1,2 @@
+model_checkpoint_path: "_Batch_size_1epoch_best.hd5"
+all_model_checkpoint_paths: "_Batch_size_1epoch_best.hd5"
