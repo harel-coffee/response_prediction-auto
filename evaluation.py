@@ -69,10 +69,7 @@ import joblib
 from scipy.stats import sem
 from sklearn.metrics import roc_auc_score
 import argparse
-
-
 from config import parameters
-
 print(parameters.OUTPUTDIR_WIN)
 
 
@@ -163,8 +160,6 @@ def embedding_AE():
     encoder_loaded = load_model(os.path.join(WEIGHTS_FOLDER, AE_model_name),
                                            compile=False) # epc200_im256_batch256_20220211-093252_EncoderModel.h5
 
-    # DatasetFile = 'C:/DATA/Aperio_dataset_v7.csv'
-    # DatasetFile = 'C:/DATA/Aperio_dataset_v10.csv'
     Dataset_ = pd.read_csv(DatasetFile)
 
     # Fixing Names having NEW
