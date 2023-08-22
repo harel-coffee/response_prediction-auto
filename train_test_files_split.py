@@ -37,29 +37,12 @@ import shutil
 import pandas as pd
 import glob
 import argparse
-# src_dir = 'C:/DATA/extracted_cutted_Augmented/data/png_files/'
-# dest_dir = 'C:/DATA/VAE_Data/0/'
 
-# files = os.listdir(src_dir)
- 
-
-
-# for fname in files:
-#     src = src_dir+fname+'/'
-#     print(src)
-#     shutil.copytree(src, dest_dir,dirs_exist_ok=True)
     
     
     
 ##################### Separate Train and Test
 
-  
-# src_dir =       'C:/DATA/extracted_cutted_Augmented/data/png_files/'
-# Training_dir =  'C:/DATA/extracted_cutted_Augmented/data/png_files/Training/'
-# Test_dir =      'C:/DATA/extracted_cutted_Augmented/data/png_files/Testing/'
-# # AE_Dir =        'C:/DATA/extracted_cutted_Augmented/data/AE_Data/0/'
-# Training = pd.read_csv('C:/DATA/Aperio_TrainingSet_v10.csv')
-# Testing = pd.read_csv('C:/DATA/Aperio_TestSet_v10.csv')
 
 def load(self, filename="config/param_spl.dat"):
     d = {"fname_field": "fname_field",
