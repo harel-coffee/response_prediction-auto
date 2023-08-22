@@ -176,7 +176,7 @@ simple_autoencoder = Model(simple_autoencoder_input, simple_autoencoder_output)
 
 simple_autoencoder.summary()
 
-
+# settting learning rate
 LEARNING_RATE = 0.0005
 N_EPOCHS = 20
 
