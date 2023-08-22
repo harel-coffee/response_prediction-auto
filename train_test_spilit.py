@@ -34,14 +34,6 @@ import seaborn as sns
 from sklearn.model_selection import train_test_split
 import sys
 import argparse
-# from sklearn.preprocessing import StandardScaler, LabelEncoder
-# from keras.models import Sequential
-# from keras.layers import Dense
-# from sklearn.metrics import confusion_matrix, precision_score, recall_score, f1_score, cohen_kappa_score
-##############################   Internal Imports
-# sys.path.insert(1, 'C:/DATA/Code/DigiPath_OWH/Config/Config')
-# import parameters
-
 
 
 parser = argparse.ArgumentParser(description='train test split')
@@ -155,24 +147,6 @@ def main():
      'SVS File Size',
      'SVS Magnification',
      'SVS MPP',
-     # 'XML Unique Labels',
-     # 'XML Num Regions',
-     # 'Num CAH',
-     # 'Num Carcinoma',
-     # 'Num Benign',
-     # 'Total CAH Area',
-     # 'Total Carcinoma Area',
-     # 'Total BenignArea',
-     # 'CAH_Area_Micron',
-     # 'Carcinoma_Area_Micron',
-     # 'Benign_Area_Micron',
-     # 'CAH_Length',
-     # 'Carcinoma_Length',
-     # 'Benign_Length',
-     # 'CAH_Length_Micron',
-     # 'Carcinoma_Length_Micron',
-     # 'Benign_Length_Micron',
-     # 'SVS Resolution',
      'SVS MetaData']]
     
     
