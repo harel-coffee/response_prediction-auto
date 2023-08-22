@@ -16,7 +16,7 @@
 # Output:       Plots: 
 #
 # 
-# Example:      patient_data_statistics.py
+# Example:      patient_data_statistics.py or runfile(patient_data_statistics.py)
 #
 #
 # version ='3.0'
