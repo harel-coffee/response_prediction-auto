@@ -16,7 +16,7 @@
 # Output:       CSV file: New Patient List File
 #
 # 
-# Example:      BMI_Category.py
+# Example:      BMI_Category.py or runfile(BMI_Category.py)
 #
 #
 # version ='3.0'
