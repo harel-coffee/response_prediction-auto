@@ -16,7 +16,7 @@
 # Output:       CSV file: Final Dataset
 #
 # 
-# Example:      generate_dataset.py
+# Example:      generate_dataset.py or runfile(generate_dataset.py)
 #
 #
 # version ='3.0'

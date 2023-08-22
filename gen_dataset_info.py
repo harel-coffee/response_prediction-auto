@@ -101,9 +101,7 @@ for file in files:
     else:
         FileExistIn3DHist = 0
     
-    
-    
-    
+
     SVSFileSize = round(os.path.getsize(file) / (1024*1024*1024),2)
     xmlpath = str.replace(file, 'svs', 'xml')
     xmlexist = os.path.exists(xmlpath)
