@@ -47,6 +47,7 @@ OUTPUTDIR = '/home/seyedm.mousavikahaki/Documents/wxc4/Segmented/'
 root_directory = glob.glob(r''+INPUTDIR+'*')
 
 ##############################
+#get current dir
 cwd = os.getcwd()
 
 jpg_file=".jpg"
@@ -69,7 +70,6 @@ png_dir=OUTPUTDIR
 
 
 #for on all folders
-
 for filename in root_directory:
    
     groupname = filename.split("\\")[-1]
