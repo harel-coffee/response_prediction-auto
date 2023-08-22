@@ -107,8 +107,7 @@ def main():
                 # y_center = min(y) + ((max(y)-min(y))/2)
                 final_x.append(max(x) - min(x))
                 final_y.append(max(y) - min(y))
-                # bound_x = x_center - final_x[region_number] /2
-                # bound_y = y_center-final_y[region_number]/2
+
                 bounds.append([min(x1), min(y1)])#new------------------------------------
                 
                 # bounds.append([min(x), min(y)])
