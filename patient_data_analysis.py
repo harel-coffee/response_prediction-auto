@@ -16,7 +16,7 @@
 # Output:       None
 #
 # 
-# Example:      train_test_split.py
+# Example:      train_test_split.py or runfile(train_test_split.py)
 #
 #
 # version ='3.0'
