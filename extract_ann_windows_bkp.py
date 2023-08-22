@@ -40,7 +40,7 @@ cwd = os.getcwd()
 save_dir = cwd + '/extracted/'
 
 #when svs is 40x highsize is True 
-highsize = True            #new------------------------------------
+highsize = True            
 
 WSIs_ = glob(cwd + '/CMU-2.svs')
 WSIs = []
