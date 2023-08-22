@@ -34,7 +34,7 @@ from skimage.io import imsave, imread
 from PIL import Image
 import math
 #when svs is 40x highsize is True 
-highsize =True          #new------------------------------------
+highsize =True          
 
 
 save_dir = '/home/seyedm.mousavikahaki/Documents/wxc4/extracted'
