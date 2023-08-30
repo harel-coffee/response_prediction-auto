@@ -261,7 +261,8 @@ def main():
         print(i)
         print(len(allDataTrain[i]))
         Adf=[]
-        Adf = pd.DataFrame(allDataTrain[i]).values.flatten()
+        Adf = allDataTrain[i].mean(axis=0)
+        #Adf = pd.DataFrame(allDataTrain[i]).values.flatten()
         X_trainO = pd.concat([X_trainO, pd.DataFrame(Adf).T], axis=0)
         
         
@@ -271,7 +272,8 @@ def main():
         print(i)
         print(len(allDataTunn[i]))
         Adf=[]
-        Adf = pd.DataFrame(allDataTunn[i]).values.flatten()
+        Adf = allDataTunn[i].mean(axis=0)
+        #Adf = pd.DataFrame(allDataTunn[i]).values.flatten()
         X_tunnO = pd.concat([X_tunnO, pd.DataFrame(Adf).T], axis=0)
     
 
@@ -289,11 +291,7 @@ def main():
     X = X.dropna(axis=1, how='any')
     X_tunn = X_tunn.dropna(axis=1, how='any')
     
-    model = Sequential()
-    selector = SelectKBest(f_regression)
-    X = selector.fit_transform(X, y_train)
-    X_tunn = selector.transform(X_tunn) 
-    
+    model = Sequential()    
     init2 = Orthogonal(seed = int(a.seeds1))
 
     model.add(Dense(128, input_dim=X.shape[1], kernel_initializer=init2)) 

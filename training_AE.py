@@ -291,7 +291,8 @@ def main():
         print(i)
         print(len(allDataTrain[i]))
         Adf=[]
-        Adf = pd.DataFrame(allDataTrain[i]).values.flatten()
+        Adf = allDataTrain[i].mean(axis=0)
+        #Adf = pd.DataFrame(allDataTrain[i]).values.flatten()
         X_trainO = pd.concat([X_trainO, pd.DataFrame(Adf).T], axis=0)
 
     X_tunnO = []
@@ -300,7 +301,8 @@ def main():
         print(i)
         print(len(allDataTunn[i]))
         Adf=[]
-        Adf = pd.DataFrame(allDataTunn[i]).values.flatten()
+        Adf = allDataTunn[i].mean(axis=0)
+        #Adf = pd.DataFrame(allDataTunn[i]).values.flatten()
         X_tunnO = pd.concat([X_tunnO, pd.DataFrame(Adf).T], axis=0)
     
        
@@ -322,9 +324,6 @@ def main():
  
     ################## Define Model and Training
     model = Sequential()
-    selector = SelectKBest(f_regression, k=int(a.k))
-    X = selector.fit_transform(X, y_train)
-    X_tunn = selector.transform(X_tunn)
     
     init2 = Orthogonal(seed = int(a.seeds1))
     # we can think of this chunk as the input layer
