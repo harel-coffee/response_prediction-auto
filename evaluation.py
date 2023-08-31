@@ -420,12 +420,8 @@ def main():
     
     
     
-    # testing_data = 'C:/DATA/2_extracted_cutted_Augmented/Features/ResNet50/Testing/'
-    # testing_labels = 'C:/DATA/2_extracted_cutted_Augmented/Features/ResNet50/TestingLabels.h5'
-    # random_forest = False
-    # bootsrap = False
     
-    # model_file = 'C:/DATA/Code/DigiPath_OWH/models/saved_models/1_ResNet50_Model_ep_5000_val0_1_batch16_.h5'
+    
     #############################################  READ FEATURES From HDF5 Files
     
 
@@ -454,7 +450,8 @@ def main():
         print(i)
         print(len(allDataTest[i]))
         Adf=[]
-        Adf = pd.DataFrame(allDataTest[i]).values.flatten()
+        Adf = allDataTest[i].mean(axis=0)
+        # Adf = pd.DataFrame(allDataTest[i]).values.flatten()
         X_testO = pd.concat([X_testO, pd.DataFrame(Adf).T], axis=0)     
     X_test = X_testO.iloc[:, 0:int(P.Fn)]
     X_test.shape
@@ -462,15 +459,7 @@ def main():
     X_test = X_test.fillna(-1)
     X_test = X_test.dropna(axis=1, how='any')
     
-    if model_file.find('AE') > 0:
-        # selector = SelectKBest(f_regression, k=int(a.k))
-        # X_test= selector.fit_transform(X_test, y_test)
-        selector = pickle.load(open(weight_dir+"selectorAE.sav",'rb'))
-        X_test= selector.transform(X_test)   
-    else:
-        selector = pickle.load(open(weight_dir+"selector.sav",'rb'))
-        X_test= selector.transform(X_test)    
-    X_test.shape
+
     
     
     
@@ -478,7 +467,7 @@ def main():
     ################## Load Trained Model
     print(model_file)
     model = load_model(weight_dir+model_file)
-    # history_dict = json.load(open(os.path.join(WEIGHTS_FOLDER,'ALLDATA_Feac_epc5000_val0_1_batch32__History'), 'r'))
+    
      
     #######                Predict Values
     
