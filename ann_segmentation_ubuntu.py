@@ -54,18 +54,9 @@ jpg_file=".jpg"
 png_file=".png"
 
 
-# # Create folders if there aren't
-# hdf5_dir = Path("data\\hdf5_files\\")
-# hdf5_dir.mkdir(parents=True, exist_ok=True)
-# png_dir = Path("data/png_files/")
-# hdf5_dir.mkdir(parents=True, exist_ok=True)
-
 png_dir = Path(OUTPUTDIR)
 png_dir.mkdir(parents=True, exist_ok=True)
 
-# path to str -We need them ahead
-# png_dir=r"data/png_files/"
-#hdf5_dir=r"data\\hdf5_files\\"
 png_dir=OUTPUTDIR
 
 
@@ -103,32 +94,10 @@ for filename in root_directory:
         
 
         
-        # img = cv2.imread(fl, cv2.IMREAD_COLOR)
-
-        # INPUTDIR = 'C:/DATA/extracted/'
-        # OUTPUTDIR = 'C:/DATA/extracted_segmented/'
-        
-        
-        # DIRName = "aperio-044-0/"
-        # FileName = "aperio-044-0_anno_2_reg_1CAH.jpg"
-        
-        # path_polygan =INPUTDIR+DIRName+FileName
-        # name =OUTPUTDIR+DIRName+FileName.split(".")[0]
-
-        
-        # if not os.path.exists(OUTPUTDIR+DIRName):
-        #     os.makedirs(OUTPUTDIR+DIRName)
-        
         img = cv2.imread(fl, cv2.IMREAD_COLOR)
         # img = Image.open(fl)
         #read grayscale
         image = cv2.imread(fl, cv2.IMREAD_GRAYSCALE)
-        # image = cv2.imread(path_polygan, cv2.IMREAD_COLOR)
-        # hsvImg = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
-        # fig, axes = plt.subplots(ncols=1, figsize=(18, 8))
-        # plt.imshow(hsvImg, cmap=plt.cm.gray)
-        
-        # image = Image.open(path_polygan).convert('L')
         
         #OTSU Thresholding
         thresh = threshold_otsu(image)
@@ -159,19 +128,7 @@ for filename in root_directory:
         rgba = [b,g,r, alpha]
         dst = cv2.merge(rgba,4)
         pixels = np.where(dst[:][:] ==[0,0,0,0], [255,255,255,255], dst)
-        
-        # fig, axes = plt.subplots(ncols=2, figsize=(18, 8))
-        # ax = axes.ravel()
-        # ax[0] = plt.subplot(1, 3, 1)
-        # ax[1] = plt.subplot(1, 3, 2)
-        
-        # ax[0].imshow(base, cmap=plt.cm.gray)
-        # ax[0].set_title('Original')
-        # ax[0].axis('off')
-        
-        # ax[1].imshow(pixels, cmap=plt.cm.gray)
-        # ax[1].set_title('Segmented')
-        # ax[1].axis('off')    
+         
         png_dir = Path(OUTPUTDIR+groupname)
         png_dir.mkdir(parents=True, exist_ok=True)
         
