@@ -85,30 +85,17 @@ del patient_list['BMI at dx (kg)']
 del patient_list['BMI at follow-up (kg)']
 
 patient_list.insert(8, 'BMICAT', np.nan)
-# Numbers calculated with the code at the end of this file
-# Auto Generated
-# Cutoff1 = 35.9
-# Cutoff2 = 43.885
-# Cutoff3 = 53.8125
 
 # CDC
 Cutoff1 = 18
 Cutoff2 = 25
 Cutoff3 = 30
 
-# # CDC Obssey
-# Cutoff1 = 30
-# Cutoff2 = 35
-# Cutoff3 = 40
-
 
 patient_list['BMICAT'] = np.where(pd.to_numeric(patient_list['BMI']) < Cutoff1, 'L_BMI',patient_list['BMICAT'])
 patient_list['BMICAT'] = np.where((pd.to_numeric(patient_list['BMI']) > Cutoff1) & (pd.to_numeric(patient_list['BMI']) < Cutoff2), 'M_BMI',patient_list['BMICAT'])
 patient_list['BMICAT'] = np.where((pd.to_numeric(patient_list['BMI']) > Cutoff2) & (pd.to_numeric(patient_list['BMI']) < Cutoff3), 'H_BMI',patient_list['BMICAT'])
 patient_list['BMICAT'] = np.where(pd.to_numeric(patient_list['BMI']) > Cutoff3, 'VH_BMI',patient_list['BMICAT'])
-
-
-
 
 # Plot Count with Percentage
 L_BMI = len(patient_list[(patient_list['BMICAT']== 'L_BMI')])

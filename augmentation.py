@@ -70,12 +70,6 @@ max_annot = max(Dataset_['Num CAH']+Dataset_['Num Carcinoma'])
 
 #### Augmenting to Max # of annotation
 
-# def rotate_image(image, angle):
-#   image_center = tuple(np.array(image.shape[1::-1]) / 2)
-#   rot_mat = cv2.getRotationMatrix2D(image_center, angle, 1.0)
-#   result = cv2.warpAffine(image, rot_mat, image.shape[1::-1], flags=cv2.INTER_LINEAR)
-#   return result
-
 
 def Do_Aug(OriginalFname,NewFname,Augm):
     image_ = cv2.imread(OriginalFname)
@@ -116,18 +110,7 @@ def Do_Aug(OriginalFname,NewFname,Augm):
     # plt.axis('off')
     # plt.show()
     cv2.imwrite(NewFname, imageN)     
-
-   
-# # To Plot Augmented Images      
-# Augm_list = ['90','180','h','v','vh','90v','90h','90vh','180v','180h','180vh']
-# for Augm in Augm_list:
-#     print(Augm)
-#     OriginalFname = 'C:/DATA/Extracted_New_FixedCircle_processed_Augmented/aperio-035-0/aperio-035-0_anno_2_reg_8CAH.jpg'
-#     NewFname = ''
-#     Do_Aug(OriginalFname,NewFname,Augm)
-
-
-    # cv2.imwrite(NewFname, imageN)   
+ 
 
 folders = os.listdir(src_dir)
 

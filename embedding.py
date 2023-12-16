@@ -77,12 +77,6 @@ from keras.models import Model
 from keras.applications.vgg16 import preprocess_input 
 import argparse
 
-# WEIGHTS_FOLDER = 'C:/DATA/Code/weights/'
-# # DATA_FOLDER = 'C:/DATA/extracted_cutted/data/AE_Data/'
-# # LOG_DIR = 'C:/DATA/Code/weights/logDir/'
-# INPUT_DIR = 'C:/DATA/2_extracted_cutted_Augmented/data/png_files'
-# OUTPUT_DIR = 'C:/DATA/Code/DigiPath_OWH/models/features'
-
 def load(self, filename="config/param_emb.dat"):
     d = {"AE_model": "AE_model", 
          "DatasetFile": "DatasetFile",
@@ -136,19 +130,12 @@ def main():
     
     if embedding_model == 'AE':
         ############################################# Feature Extraction Using AE
-        # simple_autoencoder_loaded = load_model(os.path.join(WEIGHTS_FOLDER, 'epc200_im256_batch256_20220222-104322_simple_autoencoderModel.h5'),
-        #                                       compile=False) # epc200_im256_batch256_20220211-093252_simple_autoencoderModel.h5
         encoder_loaded = load_model(os.path.join(WEIGHTS_FOLDER, AE_model_name),
                                                compile=False) # epc200_im256_batch256_20220211-093252_EncoderModel.h5
     
-        # DatasetFile = 'C:/DATA/Aperio_dataset_v7.csv'
-        # DatasetFile = 'C:/DATA/Aperio_dataset_v10.csv'
         Dataset_ = pd.read_csv(DatasetFile)
     
-        # Fixing Names having NEW
-        # Dataset_['Filename of initial Aperio slide'] = Dataset_['Filename of initial Aperio slide'].replace('APERIO-045NEW-0.SVS' ,'APERIO-045-0.SVS')
-        # Dataset_['Filename of initial Aperio slide'] = Dataset_['Filename of initial Aperio slide'].replace('APERIO-103NEW-0.SVS' ,'APERIO-103-0.SVS')
-    
+
     
         ##### Training
         dirs = os.listdir(INPUT_DIR+'/Training/')
@@ -228,9 +215,7 @@ def main():
         with h5py.File(OUTPUT_DIR+'/AE/TunningLabels.h5','w') as h5f:
             h5f.create_dataset("Labels", data=np.asarray(y_Tunn))
     
-    
-    
-    
+
         ##### Testing
         dirs = os.listdir(INPUT_DIR+'/Testing/')
         allDataTest = []
@@ -282,10 +267,6 @@ def main():
         # DatasetFile = 'C:/DATA/Aperio_dataset_v7.csv'
         # DatasetFile = 'C:/DATA/Aperio_dataset_v10.csv'
         Dataset_ = pd.read_csv(DatasetFile)
-    
-        # Fixing Names having NEW
-        # Dataset_['Filename of initial Aperio slide'] = Dataset_['Filename of initial Aperio slide'].replace('APERIO-045NEW-0.SVS' ,'APERIO-045-0.SVS')
-        # Dataset_['Filename of initial Aperio slide'] = Dataset_['Filename of initial Aperio slide'].replace('APERIO-103NEW-0.SVS' ,'APERIO-103-0.SVS')
     
     
         ##### Training
@@ -427,13 +408,7 @@ def main():
         model = VGG16()
         model = Model(inputs = model.inputs, outputs = model.layers[-2].output)
     
-        # DatasetFile = 'C:/DATA/Aperio_dataset_v7.csv'
-        # DatasetFile = 'C:/DATA/Aperio_dataset_v10.csv'
         Dataset_ = pd.read_csv(DatasetFile)
-    
-        # Fixing Names having NEW
-        # Dataset_['Filename of initial Aperio slide'] = Dataset_['Filename of initial Aperio slide'].replace('APERIO-045NEW-0.SVS' ,'APERIO-045-0.SVS')
-        # Dataset_['Filename of initial Aperio slide'] = Dataset_['Filename of initial Aperio slide'].replace('APERIO-103NEW-0.SVS' ,'APERIO-103-0.SVS')
     
     
         ##### Training
@@ -463,8 +438,6 @@ def main():
                 X_data.append (normalizedImg)
             
             print('X_data shape:', np.array(X_data).shape)
-            ### Limit 200 Images for test ###################### TO REMOVE
-            # X_data = X_data[0:400]
             images_loaded = np.array(X_data)
             
             
@@ -510,8 +483,6 @@ def main():
                 X_data.append (normalizedImg)
             
             print('X_data shape:', np.array(X_data).shape)
-            ### Limit 200 Images for test ###################### TO REMOVE
-            # X_data = X_data[0:400]
             images_loaded = np.array(X_data)
             
             

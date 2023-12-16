@@ -39,7 +39,7 @@ highsize =True
 
 save_dir = '/home/seyedm.mousavikahaki/Documents/wxc4/extracted'
 WSIs_ = glob('/home/seyedm.mousavikahaki/Documents/wxc4/*.svs')
-# WSIs_ = glob('/gpfs_projects/wxc4/DigiPath-WashU-Data/Washu-Aperio/*.svs')
+
 
 WSIs = []
 XMLs = []
@@ -76,22 +76,20 @@ def main():
                     x.append(int(np.float32(Vertex.attrib['X'])))
                     y.append(int(np.float32(Vertex.attrib['Y'])))
                     
-                x1=x  #new------------------------------------
-                y1=y  ##new------------------------------------
-                if highsize== True:#new------------------------------------
-                    x = [ math.floor(number/4) for number in x]#new------------------------------------
-                    y = [math.floor(number/4) for number in y]#new------------------------------------
+                x1=x  
+                y1=y  
+                if highsize== True:
+                    x = [ math.floor(number/4) for number in x]
+                    y = [math.floor(number/4) for number in y]
                 
                 
-                # x_center = min(x) + ((max(x)-min(x))/2)
-                # y_center = min(y) + ((max(y)-min(y))/2)
+                
                 final_x.append(max(x) - min(x))
                 final_y.append(max(y) - min(y))
-                # bound_x = x_center - final_x[region_number] /2
-                # bound_y = y_center-final_y[region_number]/2
-                bounds.append([min(x1), min(y1)])#new------------------------------------
                 
-                # bounds.append([min(x), min(y)])
+                bounds.append([min(x1), min(y1)])
+                
+                
                 points = np.stack([np.asarray(x), np.asarray(y)], axis=1)
                 points[:,1] = np.int32(np.round(points[:,1] - min(y) )) 
                 points[:,0] = np.int32(np.round(points[:,0] - min(x) ))
@@ -99,7 +97,7 @@ def main():
                 
                 
                 
-                # cv2.fillPoly(mask, [points], color=(255,255,255))
+                
                 if(len(x)>3):                                        #polygon
                     print("poly")
                     cv2.fillPoly(mask, [points], color=(255,255,255))
@@ -122,32 +120,31 @@ def main():
                         startAngle = 0
                         endAngle = 360
                         image = cv2.ellipse(mask, center_coordinates, axesLength, angle, startAngle, endAngle, (255,255,255), thickness=-1)
-               ##### <-----new block
+               
                 
                 
                 
                 basename = os.path.basename(XML)
                 basename = os.path.splitext(basename)[0]
                 subdirm = '{}/{}/'.format(save_dir,basename)
-                # cv2.imwrite(subdirm+basename+"_anno_"+str(annotationID)+"_reg_"+str(region_number+1)+"_mask_"+lbl+".jpg",mask)
+                
                 print('saved <<<mask>>> of annotationID : ' + str(annotationID))
                 print(subdirm+basename+"_anno_"+str(annotationID)+"_reg_"+str(region_number+1)+"_mask_"+lbl+".jpg")
                 masks.append(mask)
                 print('opening: a region of' + WSIs[idx])
                 pas_img = openslide.OpenSlide(WSIs[idx])
                 mask = masks[region_number]
-                if highsize== True:         #new------------------------------------
-                    PAS = pas_img.read_region((int(bounds[region_number][0]),  #new------------------------------------
-                                               int(bounds[region_number][1])), #new------------------------------------
-                                              1,(final_x[region_number],final_y[region_number]))#new------------------------------------
-                    # plt.imshow(PAS)#new------------------------------------
-                else:#new------------------------------------
-                    PAS = pas_img.read_region((int(bounds[region_number][0]),#new------------------------------------
-                                               int(bounds[region_number][1])),#new------------------------------------
-                                              0, (final_x[region_number],final_y[region_number]))#new------------------------------------
-                    # plt.imshow(PAS)#new------------------------------------
+                if highsize== True:         
+                    PAS = pas_img.read_region((int(bounds[region_number][0]), 
+                                               int(bounds[region_number][1])), 
+                                              1,(final_x[region_number],final_y[region_number]))
+                    
+                else:
+                    PAS = pas_img.read_region((int(bounds[region_number][0]),
+                                               int(bounds[region_number][1])),
+                                              0, (final_x[region_number],final_y[region_number]))
+                    
                 
-                # PAS = pas_img.read_region((int(bounds[region_number][0]),int(bounds[region_number][1])), 0, (final_x[region_number],final_y[region_number]))
                 PAS = np.array(PAS)[:,:,0:3]
                 for channel in range(3):
                     PAS_ = PAS[:,:,channel]
@@ -159,7 +156,7 @@ def main():
                 print('saved <region> of annotationID : ' + str(annotationID))
                 region_number = region_number + 1
                 
-cv2.destroyAllWindows()  ##### new              
+cv2.destroyAllWindows()           
 
 def make_folder(directory):
     if not os.path.exists(directory):
