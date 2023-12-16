@@ -91,42 +91,6 @@ def main():
        cnt = cnt + 1
     plt.show()
     
-    # ####### BMI Histograms
-    # responders = data[data['Responder?']=='Y']
-    # N_responders = data[data['Responder?']=='N']
-    # # col = 'Age at dx'
-    # # col = 'BMI at dx (kg)'
-    # col = 'BMI'
-    # responders=responders.loc[responders[col].notnull()]
-    # N_responders=N_responders.loc[N_responders[col].notnull()]
-    # maxx = 20
-    # fig, ax = plt.subplots(1, 2)
-    # ax[0].hist(responders[col].astype(float).astype(int),10,facecolor='green', alpha=0.5)
-    # ax[1].hist(N_responders[col].astype(float).astype(int),10,facecolor='red', alpha=0.5)
-    # # fig.subplots_adjust(left=0, right=1, bottom=0, top=0.5, hspace=0.05, wspace=1)
-    # ax[0].set_ylim([0, maxx])
-    # ax[0].set_xlabel("Responders "+col)
-    # ax[0].set_ylabel("")
-    # ax[1].set_ylim([0, maxx])
-    # ax[1].set_xlabel("NonResponders "+col)
-    # ax[1].set_ylabel("")
-    # #ax[0].legend(loc='best')
-    # #ax[1].legend(loc='best')
-    # fig.suptitle("Distribution of "+col)
-    # plt.show()
-    
-    # ##################### TWO VARIABLES - LINEAR MODEL PLOT
-    # datadesc = data
-    
-    # # 'BMI at follow-up (kg)'
-    # col1 = 'Age at dx'
-    # col2 = 'BMI'
-    # datadesc=datadesc.loc[datadesc[col1].notnull()]
-    # datadesc=datadesc.loc[datadesc[col2].notnull()]
-    # datadesc[col1] = datadesc[col1].astype(float).astype(int)
-    # datadesc[col2] = datadesc[col2].astype(float).astype(int)
-    # sns.lmplot(data=datadesc,x=col1,y=col2)
-    
     
     ############### Select sub data (choose informative data)
     
@@ -166,11 +130,7 @@ def main():
     data['Race'].unique()
     data['BMICAT'].unique()
     data['SVS Magnification'].unique()
-    
-    # data['DM (Y/N)'].unique()
-    # data['Progestin Use (type/agent)'].unique()
-    # data['FHx of endometrial CA'].unique()
-    # data['PHx of breast/ovarian CA'].unique()
+   
     
     
     
@@ -264,20 +224,9 @@ def main():
     X['BMICAT'].value_counts()
     X['SVS Magnification'].value_counts()
     
-    # # Combined Hist
-    # ddf = pd.concat([data1['Responder'],data1['Race'],data1['BMICAT']], axis=1)
-    
-    # sns.displot(data=ddf, x='Race', hue='Responder', kind='hist', fill=True, palette=sns.color_palette('bright')[:2], height=5, aspect=1.5)
-    # sns.displot(data=ddf, x='BMICAT', hue='Responder', kind='hist', fill=True, palette=sns.color_palette('bright')[:2], height=5, aspect=1.5)
-    
-    # ddf.groupby("Responder").Race.hist(alpha=0.4)
-    # ddf.groupby("Race").BMICAT.hist(alpha=0.4)
-    # plt.show()
     
     
-    
-    # X['ResponderRace'] = X['Responder'].astype(str) + "_" + X['Race'].astype(str)
-    
+        
     X_train1, X_test1 = train_test_split(X , test_size=0.2, random_state=20, stratify=X[['Responder','SVS Magnification']])
     
 
@@ -450,113 +399,4 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
-# ##### RACE Origina
-# N_WHITE = len(data[(data['Race']== 'WHITE')])
-# N_AA = len(data[(data['Race']== 'AA')])
-# N_ASIAN = len(data[(data['Race']== 'ASIAN')])
-# percent = []
-# percent.append(np.round((N_WHITE / (N_WHITE+N_AA+N_ASIAN))* 100))
-# percent.append(np.round((N_AA / (N_WHITE+N_AA+N_ASIAN))* 100))
-# percent.append(np.round((N_ASIAN / (N_WHITE+N_AA+N_ASIAN))* 100))
-# ax = sns.countplot(x='Race', data=data,order=['WHITE','AA','ASIAN'])
-# cnt = 0
-# for p in ax.patches:
-#     ax.annotate("cnt:"+'{:.0f}'.format(p.get_height())+"  percent:"+str(percent[cnt])+"%", (p.get_x()-0.05, p.get_height()+0.06))
-#     cnt = cnt + 1
-
-# plt.show() 
-# ##### RACE Train
-# N_WHITE = len(X_train1[(X_train1['Race']== 'WHITE')])
-# N_AA = len(X_train1[(X_train1['Race']== 'AA')])
-# N_ASIAN = len(X_train1[(X_train1['Race']== 'ASIAN')])
-# percent = []
-# percent.append(np.round((N_WHITE / (N_WHITE+N_AA+N_ASIAN))* 100))
-# percent.append(np.round((N_AA / (N_WHITE+N_AA+N_ASIAN))* 100))
-# percent.append(np.round((N_ASIAN / (N_WHITE+N_AA+N_ASIAN))* 100))
-# ax = sns.countplot(x='Race', data=X_train1,order=['WHITE','AA','ASIAN'])
-# cnt = 0
-# for p in ax.patches:
-#     ax.annotate("cnt:"+'{:.0f}'.format(p.get_height())+"  percent:"+str(percent[cnt])+"%", (p.get_x()-0.05, p.get_height()+0.06))
-#     cnt = cnt + 1
-# plt.show()
-# ##### RACE Test
-# N_WHITE = len(X_test1[(X_test1['Race']== 'WHITE')])
-# N_AA = len(X_test1[(X_test1['Race']== 'AA')])
-# N_ASIAN = len(X_test1[(X_test1['Race']== 'ASIAN')])
-# percent = []
-# percent.append(np.round((N_WHITE / (N_WHITE+N_AA+N_ASIAN))* 100))
-# percent.append(np.round((N_AA / (N_WHITE+N_AA+N_ASIAN))* 100))
-# percent.append(np.round((N_ASIAN / (N_WHITE+N_AA+N_ASIAN))* 100))
-# ax = sns.countplot(x='Race', data=X_test1,order=['WHITE','AA','ASIAN'])
-# cnt = 0
-# for p in ax.patches:
-#     ax.annotate("cnt:"+'{:.0f}'.format(p.get_height())+"  percent:"+str(percent[cnt])+"%", (p.get_x()-0.05, p.get_height()+0.06))
-#     cnt = cnt + 1
-# plt.show()
-
-
-# print("Origibal Data:")
-# # print("Count:"+str(len(data['Race'].unique())))
-# print(data['BMICAT'].value_counts(normalize=True))
-# print("Train Data:")
-# print("Count:"+str(len(X_train1['BMICAT'].unique())))
-# print(X_train1['BMICAT'].value_counts(normalize=True))
-# print("Test Data:")
-# print("Count:"+str(len(X_test1['BMICAT'].unique())))
-# print(X_test1['BMICAT'].value_counts(normalize=True))
-
-
-# print("Origibal Data:")
-# print("Count:"+str(len(data['Responder?'].unique())))
-# print(data['Responder?'].value_counts(normalize=True))
-# print("Train Data:")
-# print("Count:"+str(len(X_train1['Responder'].unique())))
-# print(X_train1['Responder'].value_counts(normalize=True))
-# print("Test Data:")
-# print("Count:"+str(len(X_test1['Responder'].unique())))
-# print(X_test1['Responder'].value_counts(normalize=True))
-
-# print("Origibal Data:")
-# # print("Count:"+str(len(data['Race'].unique())))
-# print(data['Race'].value_counts(normalize=True))
-# print("Train Data:")
-# print("Count:"+str(len(X_train1['Race'].unique())))
-# print(X_train1['Race'].value_counts(normalize=True))
-# print("Test Data:")
-# print("Count:"+str(len(X_test1['Race'].unique())))
-# print(X_test1['Race'].value_counts(normalize=True))
-
-
-# print("#Train Samples (Responders)")
-# print(len(X_train1.Responder.values))  # Number of rows
-# print("# Unique Values(Responders)")
-# print(len(set(X_train1.Responder.values)))  # Unique values
-
-# print("#Test Samples (Responders)")
-# print(len(X_test1.Responder.values))  # Number of rows
-# print("# Unique Values(Responders)")
-# print(len(set(X_test1.Responder.values)))  # Unique values
-
-
-# print("#Train Samples (Race)")
-# print(len(X_train1.Race.values))  # Number of rows
-# print("# Unique Values(Race)")
-# print(len(set(X_train1.Race.values)))  # Unique values
-
-# print("#Test Samples (Race)")
-# print(len(X_test1.Race.values))  # Number of rows
-# print("# Unique Values(Race)")
-# print(len(set(X_test1.Race.values)))  # Unique values
-
-
-
-
-
-
-
-
-
-
 
