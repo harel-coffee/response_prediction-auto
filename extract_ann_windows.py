@@ -70,7 +70,7 @@ def main():
         for annotation in annot:
             final_x=[]
             final_y=[] 
-            annotationID=annotation.attrib.get('Id') #annotationID+1
+            annotationID=annotation.attrib.get('Id') 
             Regions = root.findall("./Annotation[@Id='" + str(annotationID) + "']/Regions/Region")
             bounds = []
             masks = []  
@@ -135,7 +135,7 @@ def main():
                 basename = os.path.basename(XML)
                 basename = os.path.splitext(basename)[0]
                 subdirm = '{}/{}/'.format(save_dir,basename)
-                # cv2.imwrite(subdirm+basename+"_anno_"+str(annotationID)+"_reg_"+str(region_number+1)+"_mask_"+lbl+".jpg",mask)
+                
                 print('saved <<<mask>>> of annotationID : ' + str(annotationID))
                 print(subdirm+basename+"_anno_"+str(annotationID)+"_reg_"+str(region_number+1)+"_mask_"+lbl+".jpg")
                 masks.append(mask)

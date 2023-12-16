@@ -299,10 +299,6 @@ else:
 
 
 
-
-
-
-
 ### Plot Responders Count
 data = datasetInfo.loc[datasetInfo['File Exist In 3DHist'] == True]
 data = data.loc[datasetInfo['XML File Exist'] == True]

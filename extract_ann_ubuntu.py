@@ -33,7 +33,6 @@ from glob import glob
 from skimage.io import imsave, imread
 from PIL import Image
 import math
-#when svs is 40x highsize is True 
 highsize =True          
 
 

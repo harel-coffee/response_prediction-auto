@@ -104,8 +104,8 @@ patient_list["Race"] = np.where(patient_list["Race"] == 'W', "WHITE", patient_li
 patient_list['Race'].value_counts()
 
 ############### Merge DataFrames
-AllData0 = pd.merge(patient_list,dataset_features,on="Patient ID", right_index=False) # can add how='inner', left_on='left column',right_on='right column'
-AllData1 = pd.merge(patient_list,dataset_features_Okl,on="Patient ID", right_index=False) # can add how='inner', left_on='left column',right_on='right column'
+AllData0 = pd.merge(patient_list,dataset_features,on="Patient ID", right_index=False) 
+AllData1 = pd.merge(patient_list,dataset_features_Okl,on="Patient ID", right_index=False) 
 AllData = pd.concat([AllData0,AllData1], axis=0)
 
 ############### Save Dataset
