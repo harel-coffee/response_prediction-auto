@@ -50,8 +50,6 @@ parser.add_argument('--downsampling', action="store_true", help='when svs is 40x
 WSIs = []
 XMLs = []
 
-
-
 def main():
     # go though all WSI
     args = parser.parse_args()
@@ -70,7 +68,7 @@ def main():
         for annotation in annot:
             final_x=[]
             final_y=[] 
-            annotationID=annotation.attrib.get('Id') #annotationID+1
+            annotationID=annotation.attrib.get('Id') 
             Regions = root.findall("./Annotation[@Id='" + str(annotationID) + "']/Regions/Region")
             bounds = []
             masks = []
@@ -134,7 +132,6 @@ def main():
                 basename = os.path.basename(XML)
                 basename = os.path.splitext(basename)[0]
                 subdirm = '{}/{}/'.format(save_dir,basename)
-                # cv2.imwrite(subdirm+basename+"_anno_"+str(annotationID)+"_reg_"+str(region_number+1)+"_mask_"+lbl+".jpg",mask)
                 print('saved <<<mask>>> of annotationID : ' + str(annotationID))
                 print(subdirm+basename+"_anno_"+str(annotationID)+"_reg_"+str(region_number+1)+"_mask_"+lbl+".jpg")
                 masks.append(mask)
@@ -165,7 +162,7 @@ def main():
                 print('saved <region> of annotationID : ' + str(annotationID))
                 region_number = region_number + 1
                 
-cv2.destroyAllWindows()  ##### new              
+cv2.destroyAllWindows()           
 
 def make_folder(directory):
     if not os.path.exists(directory):
