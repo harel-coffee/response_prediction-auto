@@ -116,22 +116,21 @@ parser.add_argument('--save_dir', type = str,
 
 
 def main():
-    # fo = open("C:/Users/SeyedM.MousaviKahaki/OneDrive - FDA/Documents/OWH_Project/WSI_Analysis/WSI/parameters.dat", "wb")
-    # fo.close()
+    
     args = parser.parse_args()
     INPUT_DIR = args.source
     WEIGHTS_FOLDER = args.weight_folder
     OUTPUT_DIR = args.save_dir
     embedding_model = args.embedding_model
-    AE_model_name = P.AE_model#'epc200_im256_batch256_20220222-104322_EncoderModel.h5'
-    DatasetFile = P.DatasetFile#'C:/DATA/Aperio_dataset_v10.csv'
-    filename_field = P.fname_field.replace('_' ,' ') # 'Filename of initial Aperio slide'
-    truth_field = P.truth_field # 'Responder'
+    AE_model_name = P.AE_model
+    DatasetFile = P.DatasetFile
+    filename_field = P.fname_field.replace('_' ,' ') 
+    truth_field = P.truth_field 
     
     if embedding_model == 'AE':
         ############################################# Feature Extraction Using AE
         encoder_loaded = load_model(os.path.join(WEIGHTS_FOLDER, AE_model_name),
-                                               compile=False) # epc200_im256_batch256_20220211-093252_EncoderModel.h5
+                                               compile=False) 
     
         Dataset_ = pd.read_csv(DatasetFile)
     
@@ -260,12 +259,8 @@ def main():
     elif embedding_model == 'resnet50':
         
         ############################################# Feature Extraction Using RESNET50 (Transfer Learning)
-    
         model1 = ResNet50(weights='imagenet', pooling="avg", include_top = False) 
-    
-    
-        # DatasetFile = 'C:/DATA/Aperio_dataset_v7.csv'
-        # DatasetFile = 'C:/DATA/Aperio_dataset_v10.csv'
+
         Dataset_ = pd.read_csv(DatasetFile)
     
     
@@ -288,8 +283,7 @@ def main():
                 X_data.append (normalizedImg)
             
             print('X_data shape:', np.array(X_data).shape)
-            ### Limit 200 Images for test ###################### TO REMOVE
-            # X_data = X_data[0:400]
+            
             images_loaded = np.array(X_data)
             
             
@@ -371,8 +365,7 @@ def main():
                 X_data.append (normalizedImg)
             
             print('X_data shape:', np.array(X_data).shape)
-            ### Limit 200 Images for test ###################### TO REMOVE
-            # X_data = X_data[0:400]
+
             images_loaded = np.array(X_data)
             
             
@@ -403,7 +396,6 @@ def main():
         
         ############################################# Feature Extraction Using VGG16 (Transfer Learning)
     
-        # model1 = ResNet50(weights='imagenet', pooling="avg", include_top = False) 
     
         model = VGG16()
         model = Model(inputs = model.inputs, outputs = model.layers[-2].output)
@@ -431,8 +423,6 @@ def main():
                 # resize image
                 image_ = cv2.resize(image_, dim, interpolation = cv2.INTER_AREA)
                 
-                # # prepare image for model - Try this
-                # imgx = preprocess_input(reshaped_img)
                 
                 normalizedImg = cv2.normalize(image_, None, alpha=0, beta=1, norm_type=cv2.NORM_MINMAX, dtype=cv2.CV_32F)
                 X_data.append (normalizedImg)

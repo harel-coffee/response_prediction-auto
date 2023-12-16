@@ -41,19 +41,6 @@ from scipy import ndimage
 src_dir = 'C:/DATA/Oklahoma_Extracted_New_FixedCircle_processed_Augmented_combined/'
 dest_dir = 'C:/DATA/Oklahoma_Extracted_New_FixedCircle_processed_Augmented_combined/'
 
-
-# #### Remove Benign Area
-# folders = os.listdir(src_dir)
-# substring = 'Benign'
-# for foldername in folders:
-#     src = src_dir+foldername+'/'
-#     print(src)
-#     filenames = next(os.walk(src))[2]
-#     for fname in filenames:
-#         if substring in fname:
-#             print("Removing " + src+ fname)
-#             os.remove(src+ fname)
-
                 
 Augm_list = ['90','180','h','v','vh','90v','90h','90vh','180v','180h','180vh',
              '90','180','h','v','vh','90v','90h','90vh','180v','180h','180vh',

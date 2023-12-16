@@ -115,7 +115,7 @@ for filename in root_directory:
         img1=Image.fromarray(base)
         
         
-        ImageDraw.floodfill(img1, seed, rep_value, thresh = thresh)#220)
+        ImageDraw.floodfill(img1, seed, rep_value, thresh = thresh)
         
         img1.save(TEMPDIR+fileName+png_file)
         
