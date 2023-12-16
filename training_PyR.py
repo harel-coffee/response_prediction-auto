@@ -87,7 +87,7 @@ load(P)
 P.__dict__
 
 
-def load(self, filename="config/param_ae.dat"):
+def load(self, filename="config/parameters.dat"):
     d = {"k": "k", "Fn": "Fn", "batchSize": "batchSize",
          "nepochs": "nepochs","validationSplit": "validationSplit","lr1": "lr1",
          "decay": "decay","momentum": "momentum","nesterov": "nesterov",

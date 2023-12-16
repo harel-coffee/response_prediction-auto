@@ -1,4 +1,0 @@
-AE_model: epc200_im256_batch256_20220222-104322_EncoderModel.h5
-DatasetFile: data/Aperio_dataset_v10.csv
-fname_field: Filename_of_initial_Aperio_slide
-truth_field: Responder

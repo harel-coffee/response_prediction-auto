@@ -87,7 +87,7 @@ load(P)
 P.__dict__
 
 
-def load(self, filename="config/param_ae.dat"):
+def load(self, filename="config/parameters.dat"):
     d = {"k": "k", "Fn": "Fn", "batchSize": "batchSize",
          "nepochs": "nepochs","validationSplit": "validationSplit","lr1": "lr1",
          "decay": "decay","momentum": "momentum","nesterov": "nesterov",
@@ -156,8 +156,7 @@ def embedding_AE():
     filename_field = P.fname_field.replace('_' ,' ') # 'Filename of initial Aperio slide'
     truth_field = P.truth_field # 'Responder'
     ############################################# Feature Extraction Using AE
-    # simple_autoencoder_loaded = load_model(os.path.join(WEIGHTS_FOLDER, 'epc200_im256_batch256_20220222-104322_simple_autoencoderModel.h5'),
-    #                                       compile=False) # epc200_im256_batch256_20220211-093252_simple_autoencoderModel.h5
+    
     encoder_loaded = load_model(os.path.join(WEIGHTS_FOLDER, AE_model_name),
                                            compile=False) # epc200_im256_batch256_20220211-093252_EncoderModel.h5
 
