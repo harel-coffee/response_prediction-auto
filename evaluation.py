@@ -275,18 +275,17 @@ def embedding_AE():
     X_data = []
 
 def embedding_ResNet50():
-    ############################################# Feature Extraction Using RESNET50 (Transfer Learning)
+    ############################################# Feature Extraction Using RESNET50 
     args = parser.parse_args()
     INPUT_DIR = args.source
     # WEIGHTS_FOLDER = args.weight_folder
     OUTPUT_DIR = args.save_dir
-    
-    DatasetFile = P.DatasetFile#'C:/DATA/Aperio_dataset_v10.csv'
+    # embedding_model = args.embedding_model
+    DatasetFile = P.DatasetFile
     filename_field = P.fname_field.replace('_' ,' ') # 'Filename of initial Aperio slide'
     truth_field = P.truth_field # 'Responder'
     
     model1 = ResNet50(weights='imagenet', pooling="avg", include_top = False) 
-
 
     Dataset_ = pd.read_csv(DatasetFile)
 
@@ -310,8 +309,6 @@ def embedding_ResNet50():
             X_data.append (normalizedImg)
         
         print('X_data shape:', np.array(X_data).shape)
-        ### Limit 200 Images for test ###################### TO REMOVE
-        # X_data = X_data[0:400]
         images_loaded = np.array(X_data)
         
         
@@ -352,7 +349,6 @@ def embedding_ResNet50():
             X_data.append (normalizedImg)
         
         print('X_data shape:', np.array(X_data).shape)
-
         images_loaded = np.array(X_data)
         
         
@@ -383,9 +379,10 @@ def main():
     
    
     args = parser.parse_args()
+
     
-    testing_data = args.testing_data # C:/DATA/2_extracted_cutted_Augmented/Features/AE/Testing/
-    testing_labels = args.testing_labels # C:/DATA/2_extracted_cutted_Augmented/Features/AE/TestingLabels.h5
+    testing_data = args.testing_data 
+    testing_labels = args.testing_labels
     
     random_forest = args.random_forest
     bootsrap = args.bootsrap
@@ -393,14 +390,10 @@ def main():
     weight_dir = args.weight_dir
     model_file = args.model_file
     
-    
-    
-    
+
     
     #############################################  READ FEATURES From HDF5 Files
-    
 
-   
     ######## Load Testing Data
     dirs = os.listdir(testing_data)
     allDataTest = []
@@ -413,10 +406,7 @@ def main():
         # Read Features as HDF5   
         encodings_loaded = h5py.File(testing_data+dr)['Features'][:]    
         allDataTest.append(encodings_loaded)
-    
-    
-    
-    
+
     ################# Create Training and Test Dataframes from Data
     
     X_testO = []
@@ -434,7 +424,6 @@ def main():
     X_test = X_test.fillna(-1)
     X_test = X_test.dropna(axis=1, how='any')
     
-
     
     ################## Load Trained Model
     print(model_file)
@@ -486,7 +475,6 @@ def main():
     plt.figure(1)
     plt.plot([0, 1], [0, 1], 'k--')
     plt.plot(fpr_keras, tpr_keras, label='Keras (area = {:.3f})'.format(auc_keras))
-    # plt.plot(fpr_rf, tpr_rf, label='RF (area = {:.3f})'.format(auc_rf))
     plt.xlabel('False positive rate')
     plt.ylabel('True positive rate')
     plt.title('ROC curve i = ' + str(i))
@@ -523,7 +511,10 @@ def main():
         plt.title('Histogram of the bootstrapped ROC AUC scores')
         plt.show()
     
-
+    
+    
+    
+    
     
 
 def save_data(model,X,X_test,y_train,y_test,nepochs,validationSplit,batchSize,history,WEIGHTS_FOLDER):
