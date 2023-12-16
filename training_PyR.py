@@ -211,7 +211,7 @@ def main():
     # we can think of this chunk as the input layer
     model.add(Dense(128, input_dim=X.shape[1], kernel_initializer=init2)) 
     model.add(BatchNormalization())
-    model.add(Activation('relu'))#tanh
+    model.add(Activation('relu'))
     model.add(Dropout(a.Dropout))
     
     # we can think of this chunk as the hidden layer    
@@ -223,7 +223,7 @@ def main():
     # we can think of this chunk as the hidden layer    
     model.add(Dense(32, kernel_initializer=init2))
     model.add(BatchNormalization())
-    model.add(Activation('relu'))#tanh
+    model.add(Activation('relu'))
     model.add(Dropout(a.Dropout))
     
     # we can think of this chunk as the output layer

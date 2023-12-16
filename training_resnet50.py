@@ -275,13 +275,13 @@ def main():
 
     model.add(Dense(128, input_dim=X.shape[1], kernel_initializer=init2)) 
     model.add(BatchNormalization())
-    model.add(Activation('relu'))#tanh relu
+    model.add(Activation('relu'))
     model.add(Dropout(a.Dropout1))
     
  
     model.add(Dense(64, kernel_initializer=init2))
     model.add(BatchNormalization())
-    model.add(Activation('relu'))#tanh relu
+    model.add(Activation('relu'))
     model.add(Dropout(a.Dropout1))
 
     model.add(Dense(32, kernel_initializer=init2))
@@ -296,7 +296,7 @@ def main():
     # setting up the optimization of our weights 
     sgd = SGD(lr=a.lr1, decay=1e-6, momentum=a.momentum, nesterov=True)
     adm = Adam(lr=a.lr1, beta_1=0.9, beta_2=0.999, epsilon=1e-08, decay=1e-6)
-    model.compile(loss='binary_crossentropy', optimizer=adm, metrics=['accuracy']) # squared_hinge
+    model.compile(loss='binary_crossentropy', optimizer=adm, metrics=['accuracy']) 
     
     batchSize = int(a.batchSize)
     nepochs = int(a.nepochs)
