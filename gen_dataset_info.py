@@ -181,10 +181,7 @@ for file in files:
         for region in regions_:
             vertices = region.getElementsByTagName("Vertex")
             attribute = region.getElementsByTagName("Attribute")
-        #     if len(attribute) > 0:
-        #         r_label = attribute[0].attributes['Value'].value
-        #     else:
-        #         r_label = region.getAttribute('Text')
+
             r_label = region.parentNode.parentNode.getAttribute('Name')
             if r_label == 'CAH':
                 XML_num_CAH = XML_num_CAH + 1
@@ -212,9 +209,7 @@ for file in files:
         XML_uniqueLabels = set(region_labels)
         print(XML_uniqueLabels)   
         
-        
-        # TODO 
-        # Check size of regions (later)
+
         
     else:
         print("XML File Missing")

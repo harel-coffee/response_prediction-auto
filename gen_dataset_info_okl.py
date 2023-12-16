@@ -73,10 +73,6 @@ files = glob.glob(ROOTPATH+DATAPATH+'*.svs', recursive = True)
 DATAFILE = 'C:/DATA/Master patient list for FDA 3-4-22_Seyed.csv'
 ############### READ DATA
 data = pd.read_csv(DATAFILE)
-# for index, row in data.iterrows():
-#     print(row['Filename of initial Aperio slide'])
-# data.loc[data['Filename of initial Aperio slide'] == 'BA-29-13.svs']['Filename of initial 3D Histech slide']
-
 
 
 ####### Count SVS file differences - Not valid for Oklahoma Since names are not following same format
@@ -203,10 +199,7 @@ for file in files:
         for region in regions_:
             vertices = region.getElementsByTagName("Vertex")
             attribute = region.getElementsByTagName("Attribute")
-        #     if len(attribute) > 0:
-        #         r_label = attribute[0].attributes['Value'].value
-        #     else:
-        #         r_label = region.getAttribute('Text')
+
             r_label = region.parentNode.parentNode.getAttribute('Name')
             if r_label == 'CAH':
                 XML_num_CAH = XML_num_CAH + 1
@@ -233,10 +226,7 @@ for file in files:
         print(str(XML_num_Regions)+' Regions, CAH:'+str(XML_num_CAH)+', Carcinoma:'+str(XML_num_Car)+', Benign:'+str(XML_num_Ben))
         XML_uniqueLabels = set(region_labels)
         print(XML_uniqueLabels)   
-        
-        
-        # TODO 
-        # Check size of regions (later)
+
         
     else:
         print("XML File Missing")
@@ -287,10 +277,6 @@ for file in files:
             'CAH_Length_Micron' : CAH_Length_Micron,
             'Carcinoma_Length_Micron' : Carcinoma_Length_Micron,
             'Benign_Length_Micron' : Benign_Length_Micron,
-            # 'Magnification': SVS_MetaData[1],
-            # 'MPP': SVS_MetaData[10],
-            # 'OriginalWidth': SVS_MetaData[23],
-            # 'OriginalHeight': SVS_MetaData[24],
             'SVS Num Scenes' : SVS_num_scenes,
             'SVS Scene Name' : SVS_scene_name,
             'SVS Rect' : SVS_scene_rect,

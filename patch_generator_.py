@@ -192,36 +192,7 @@ def main():
                         print(groupname+' Rescaling 40X to 20X')
                     scale = 0.5
                     img = cv2.resize(img, (0,0), fx=scale, fy=scale, interpolation=cv2.INTER_AREA)
-                    # img1 = cv2.resize(img, (0,0), fx=scale, fy=scale, interpolation=cv2.INTER_AREA)
-                    # fig, axs = plt.subplots(1,2,figsize=(15,10))
-                    # axs[0].imshow(img),axs[0].axis('off')
-                    # axs[0].set_title('Original')
-                    # axs[1].imshow(img1),axs[1].axis('off')
-                    # axs[1].set_title('imgcv2_INTER_AREA')
 
-                    # imgcv2_INTER_CUBIC = cv2.resize(img, (0,0), fx=scale, fy=scale, interpolation=cv2.INTER_CUBIC)
-                    # imgcv2_INTER_AREA = cv2.resize(img, (0,0), fx=scale, fy=scale, interpolation=cv2.INTER_AREA)
-                    # imgcv2_INTER_LANCZOS4 = cv2.resize(img, (0,0), fx=scale, fy=scale, interpolation=cv2.INTER_LANCZOS4)
-                    # imgcv2_INTER_NEAREST = cv2.resize(img, (0,0), fx=scale, fy=scale, interpolation=cv2.INTER_NEAREST)
-                    # imgcv2_INTER_LINEAR = cv2.resize(img, (0,0), fx=scale, fy=scale, interpolation=cv2.INTER_LINEAR)
-
-                    # fig, axs = plt.subplots(2,3,figsize=(15,10))
-                    # # fig.suptitle('Different Interpolations')
-                    # axs[0, 0].imshow(img),axs[0,0].axis('off')
-                    # axs[0, 0].set_title('Original')
-                    # axs[0, 1].imshow(imgcv2_INTER_CUBIC),axs[0,1].axis('off')
-                    # axs[0, 1].set_title('CUBIC')
-                    # axs[0, 2].imshow(imgcv2_INTER_AREA),axs[0,2].axis('off')
-                    # axs[0, 2].set_title('AREA')
-                    # axs[1, 0].imshow(imgcv2_INTER_LANCZOS4),axs[1,0].axis('off')
-                    # axs[1, 0].set_title('LANCZOS4')
-                    # axs[1, 1].imshow(imgcv2_INTER_NEAREST),axs[1,1].axis('off')
-                    # axs[1, 1].set_title('NEAREST')
-                    # axs[1, 2].imshow(imgcv2_INTER_LINEAR),axs[1,2].axis('off')
-                    # axs[1, 2].set_title('LINEAR')
-
-                    # cv2.PSNR(img, imgcv2_INTER_CUBIC)
-                    # (score, diff) = compare_ssim(img, imgcv2_INTER_CUBIC, full=True,multichannel=True)
 
                 else:
                     if args.verbose:
@@ -236,10 +207,6 @@ def main():
                 if np.mean(img) > meanintensity_check_thr:
                     # TODO: describe what this is for
                     continue
-
-                # cv2.imshow('graycsale image',img)
-                # cv2.waitKey(0)
-                # cv2.destroyAllWindows()
 
                 rows,cols = img.shape[0], img.shape[1]
 
@@ -290,15 +257,10 @@ def main():
                                 print(e)
                             continue
                         if any(color_chk1) == any(color_chk2) == any(color_chk3) == any(color_chk5) == False :
-                        # if any(color_chk1) == any(color_chk2) == any(color_chk3) == any(color_chk4) == any(color_chk5)== False :
-                        # if any(color_chk1) == any(color_chk2) == False :
                             cropped_image = img[x:x_end, y:y_end]
                             if not cropped_image.shape == (input_y, input_x, 3):
                                 print("patch dimensions are incorrect")
                                 continue
-                            # cv2.imshow('graycsale image',cropped_image)
-                            # cv2.waitKey(0)
-                            # cv2.destroyAllWindows()
 
                             #create png files of patches
                             if png_extract==True:

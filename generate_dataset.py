@@ -29,25 +29,9 @@ import numpy as np
 import os
 import seaborn as sns
 import sys
-# from sklearn.model_selection import train_test_split
-# from sklearn.preprocessing import StandardScaler, LabelEncoder
-# from keras.models import Sequential
-# from keras.layers import Dense
-# from sklearn.metrics import confusion_matrix, precision_score, recall_score, f1_score, cohen_kappa_score
 ##############################   Internal Imports
 sys.path.insert(1, '../Config/')
 import parameters
-
-########### TO DO
-# 
-#     Fix BMI (Use at dx if exist, if not use at followup)
-#     Fix Race (mix W and White)
-
-#     Contour Features:
-#         Check GECo slides
-#   Assessment of different Classification/Transfer learning methods
-#Check TAITANIC Dataset Analysis code(s)
-###########
 
 ############### Input
 DATAFILE_patient_list = parameters.DATAFILE_patient_list
@@ -113,22 +97,6 @@ patient_list['BMICAT'] = np.where((pd.to_numeric(patient_list['BMI']) > 35.9) & 
 patient_list['BMICAT'] = np.where((pd.to_numeric(patient_list['BMI']) > 43.885) & (pd.to_numeric(patient_list['BMI']) < 53.8125), 'H_BMI',patient_list['BMICAT'])
 patient_list['BMICAT'] = np.where(pd.to_numeric(patient_list['BMI']) > 53.8125, 'VH_BMI',patient_list['BMICAT'])
 
-# # Plot Count with Percentage
-# L_BMI = len(patient_list[(patient_list['BMICAT']== 'L_BMI')])
-# M_BMI = len(patient_list[(patient_list['BMICAT']== 'M_BMI')])
-# H_BMI = len(patient_list[(patient_list['BMICAT']== 'H_BMI')])
-# VH_BMI = len(patient_list[(patient_list['BMICAT']== 'VH_BMI')])
-# percent = []
-# percent.append(np.round((L_BMI / (L_BMI+M_BMI+H_BMI+VH_BMI))* 100))
-# percent.append(np.round((M_BMI / (M_BMI+M_BMI+H_BMI+VH_BMI))* 100))
-# percent.append(np.round((H_BMI / (H_BMI+M_BMI+H_BMI+VH_BMI))* 100))
-# percent.append(np.round((VH_BMI / (VH_BMI+M_BMI+H_BMI+VH_BMI))* 100))
-# ax = sns.countplot(x='BMICAT', data=patient_list,order=[ 'L_BMI','M_BMI', 'H_BMI', 'VH_BMI'])
-# cnt = 0
-# for p in ax.patches:
-#    ax.annotate("cnt:"+'{:.0f}'.format(p.get_height())+"  %"+str(percent[cnt]), (p.get_x()+0.1, p.get_height()+0.06))
-#    cnt = cnt + 1
-# plt.show()
 
 ############### Fix RACE
 patient_list['Race'].value_counts()
@@ -140,15 +108,6 @@ AllData0 = pd.merge(patient_list,dataset_features,on="Patient ID", right_index=F
 AllData1 = pd.merge(patient_list,dataset_features_Okl,on="Patient ID", right_index=False) # can add how='inner', left_on='left column',right_on='right column'
 AllData = pd.concat([AllData0,AllData1], axis=0)
 
-
-
-# # Check if files merged correctly
-# for i in range(91):
-#     print(AllData['Patient ID'][i])
-#     print(AllData['Filename of initial Aperio slide'][i])
-#     print(AllData['SVS File Name'][i])
-#     print('________________________')
-
 ############### Save Dataset
 if os.name == 'nt':
     print("File Saved on Windows!")
@@ -157,30 +116,6 @@ else:
     print("File Saved on Ubuntu!")  
     AllData.to_csv(OUTPUTDIR_UBUNTU +DATASETNAME+'_dataset_'+ver+'.csv',index=False)
 
-
-
-# ## Find His Numbers
-# # Histogram with equal number of points in each bin 
-# pd.to_numeric(patient_list['BMI']).hist()
-# def histedges_equalN(x, nbin):
-#     npt = len(x)
-#     return np.interp(np.linspace(0, npt, nbin + 1),
-#                       np.arange(npt),
-#                       np.sort(x))
-
-# x =pd.to_numeric(patient_list['BMI'])
-# n, bins, patches = plt.hist(x, histedges_equalN(x, 4))
-
-# def histedges_equalA(x, nbin):
-#     pow = 0.5
-#     dx = np.diff(np.sort(x))
-#     tmp = np.cumsum(dx ** pow)
-#     tmp = np.pad(tmp, (1, 0), 'constant')
-#     return np.interp(np.linspace(0, tmp.max(), nbin + 1),
-#                      tmp,
-#                      np.sort(x))
-
-# n, bins, patches = plt.hist(x, histedges_equalA(x, 4), normed=False)
 
 ### Plot Responders Count
 data = AllData

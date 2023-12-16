@@ -38,19 +38,6 @@ from keras.layers import Dense
 from sklearn.metrics import confusion_matrix, precision_score, recall_score, f1_score, cohen_kappa_score
 
 
-########### TO DO
-# 
-# Add columns:
-#     Connect DatasetInfoFile to Patient file
-#     Consider Exclude column
-#     HAS CAH, HAS CA, HAS BENIGN area
-#     CAH,CA, Benign AREA in pixels (3 columns)
-#     Contour Features:
-#         Check GECo slides
-#   Assessment of different Classification/Transfer learning methods
-#Check TAITANIC Dataset Analysis code(s)
-###########
-
 
 DATAFILE = 'C:/DATA/Master patient list for FDA 9-20-21_Seyed_v2.csv'
 
@@ -135,8 +122,6 @@ ax[0].set_ylabel("")
 ax[1].set_ylim([0, maxx])
 ax[1].set_xlabel("NonResponders "+col)
 ax[1].set_ylabel("")
-#ax[0].legend(loc='best')
-#ax[1].legend(loc='best')
 fig.suptitle("Distribution of "+col)
 plt.show()
 

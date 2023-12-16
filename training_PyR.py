@@ -14,7 +14,7 @@
 # Input:        String: Source directory where the WSIs and corresponding XML files are located  
 # Output:       Extracted annotations
 #
-# version ='3.0'
+# version ='3.0' 
 # ---------------------------------------------------------------------------
 
 Created on Fri Oct 12 11:14:57 2023
@@ -63,28 +63,6 @@ from scipy.stats import sem
 from sklearn.metrics import roc_auc_score
 import argparse
 
-
-def load(self, filename="config/param_emb.dat"):
-    d = {"PyR_model": "PyR_model", 
-         "DatasetFile": "DatasetFile",
-         "fname_field": "fname_field",
-         "truth_field": "truth_field"
-         }
-    FILE = open(filename)
-    for line in FILE:
-        name, value = line.split(":")
-        value = value.strip()
-        if " " in value:
-            value = map(str, value.split())
-        else:
-            value = str(value)
-        setattr(self, d[name], value)
-    FILE.close()
-
-class A(object): pass
-P = A()
-load(P)
-P.__dict__
 
 
 def load(self, filename="config/parameters.dat"):
