@@ -306,9 +306,9 @@ def main():
         X_tunnO = pd.concat([X_tunnO, pd.DataFrame(Adf).T], axis=0)
     
        
-    featuresLen = int(a.Fn)
-    X_train = X_trainO.iloc[:, 0:featuresLen]
-    X_tunn = X_tunnO.iloc[:, 0:featuresLen]  
+    
+    X_train = X_trainO
+    X_tunn = X_tunnO 
     # #### Create Binary Labels 
     y_train = y_train.astype('float')
     y_Tunn = y_Tunn.astype('float')

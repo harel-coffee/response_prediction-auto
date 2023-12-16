@@ -75,8 +75,8 @@ parser.add_argument('--dataset_file', type = str,
                     help='path to the dataset file')
 parser.add_argument('--verbose', action='store_true', default=False)
 
-
-
+intensity_check_thr = 230
+meanintensity_check_thr = 250
 
 #for on all folders
 def main():
@@ -233,7 +233,7 @@ def main():
                 if img.shape[0] < min_acceptable_height or img.shape[1] < min_acceptable_width:
                     continue
 
-                if np.mean(img) > 250:
+                if np.mean(img) > meanintensity_check_thr:
                     # TODO: describe what this is for
                     continue
 
@@ -280,11 +280,11 @@ def main():
 
                         try:
                             # TODO: describe what this is for
-                            color_chk1 = img[x, y] > [230,230,230]#== [255,255,255]
-                            color_chk2 = img[x, y_end] > [230,230,230]#== [255,255,255]
-                            color_chk3 = img[x_end, y] > [230,230,230]#== [255,255,255]
-                            color_chk4 = img[x_end, y_end] > [230,230,230]#== [255,255,255]
-                            color_chk5 = img[round((x+x_end)/2), round((y+y_end)/2)] > [230,230,230]
+                            color_chk1 = img[x, y] > [intensity_check_thr,intensity_check_thr,intensity_check_thr]
+                            color_chk2 = img[x, y_end] > [intensity_check_thr,intensity_check_thr,intensity_check_thr]
+                            color_chk3 = img[x_end, y] > [intensity_check_thr,intensity_check_thr,intensity_check_thr]
+                            color_chk4 = img[x_end, y_end] > [intensity_check_thr,intensity_check_thr,intensity_check_thr]#== [255,255,255]
+                            color_chk5 = img[round((x+x_end)/2), round((y+y_end)/2)] > [intensity_check_thr,intensity_check_thr,intensity_check_thr]
                         except Exception as e:
                             if args.verbose:
                                 print(e)
